@@ -1,0 +1,28 @@
+{
+    "name": "RTE Dataset",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    // "features": {
+    //     "ghcr.io/devcontainers/features/common-utils:2": {
+    //         "username": "none"
+    //     },
+    //     "ghcr.io/ghcr.io/devcontainers/features/git": {}
+    // },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "MathWorks.language-matlab",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "charliermarsh.ruff"
+            ]
+        }
+    },
+    "runArgs": [
+        "--shm-size=512M"
+    ],
+    "postCreateCommand": "uv sync --dev",
+    "remoteUser": "root"
+}
