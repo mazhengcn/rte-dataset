@@ -4,12 +4,6 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
-    // "features": {
-    //     "ghcr.io/devcontainers/features/common-utils:2": {
-    //         "username": "none"
-    //     },
-    //     "ghcr.io/ghcr.io/devcontainers/features/git": {}
-    // },
     "customizations": {
         "vscode": {
             "extensions": [
