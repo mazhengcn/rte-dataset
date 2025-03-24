@@ -27,4 +27,4 @@ homepage = "https://github.com/mazhengcn/rte-dataset"
 
 [build-system]
 requires = ["uv>=0.5.0"]
-build-backend = "uv._build_backend"
+build-backend = "uv"
