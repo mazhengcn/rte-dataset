@@ -18,12 +18,16 @@ classifiers = [
 dependencies = [
     "numpy>=1.26.4",
     "scipy>=1.14.1",
-    "tensorflow-cpu>=2.17.0",
-    "tensorflow-datasets>=4.9.6",
 ]
 
 [project.urls]
 homepage = "https://github.com/mazhengcn/rte-dataset"
+
+[project.optional-dependencies]
+tfds = [
+    "tensorflow-cpu>=2.18.0",
+    "tensorflow-datasets>=4.9.8",
+]
 
 [build-system]
 requires = ["hatchling"]

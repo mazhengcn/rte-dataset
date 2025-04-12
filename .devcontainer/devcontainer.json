@@ -17,6 +17,18 @@
     "runArgs": [
         "--shm-size=512M"
     ],
-    "postCreateCommand": "uv sync --dev",
-    "remoteUser": "root"
+    "mounts": [
+        {
+            "type": "volume",
+            "source": "rte_data",
+            "target": "${containerWorkspaceFolder}/data"
+        },
+        {
+            "type": "volume",
+            "source": "rte-dataset-venv",
+            "target": "${containerWorkspaceFolder}/.venv"
+        }
+    ],
+    "postCreateCommand": "uv sync --frozen",
+    "remoteUser": "matlab"
 }
