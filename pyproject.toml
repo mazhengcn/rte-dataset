@@ -30,5 +30,5 @@ tfds = [
 ]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.6"]
+build-backend = "uv_build"
