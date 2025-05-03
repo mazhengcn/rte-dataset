@@ -2,8 +2,9 @@
 
 Dataset for training and evaluating deeprte model.
 
+[**Raw Datasets**](#raw-datasets) | [**Build Training Datasets**](#build-training-datasets)
 
-## MATLAB Datasets
+## Raw Datasets
 
 The original or "raw" data are generated using a deterministic solver written in Matlab (this may change in future). All the data are stored under `assets/raw_data` folder in the following nameing scheme: `g*-sigma_a*-sigma_t*`, e.g.,
 
@@ -33,30 +34,38 @@ Each `*.mat` files has the following keys and array shapes:
 | `ct` and `st`  | `[1, M]`        | discrete coordinates (quadratures) in velocity space |
 | `omega`        | `[1, M]`        | weights of velocity coordinates                      |
 
-## Build tfrecord (for tfds) or array_record (for grain) dataset for training
+## Build Training Datasets
 
-To build tfds or grain dataset, run the following command from root of the repo
+To build a tfds or grain dataset, run the following command from the root of the repository:
 
 ```bash
 bash build_dataset.sh ${RAW_DATA_DIR} ${TFDS_DIR} ${GRAIN_DIR}
 ```
 
-which by default will read matlab data from `RAW_DATA_DIR=assets/raw_data` and generate tfds and grain dataset under `TFDS_DIR=assets/tfds` and `GRAIN_DIR=assets/grain`.
+By default, this script reads MATLAB data from `RAW_DATA_DIR=assets/raw_data` and generates tfds and grain datasets under `TFDS_DIR=assets/tfds` and `GRAIN_DIR=assets/grain`.
 
-The dataset for training has following structure:
+Each dataset element for training has the following structure:
 
-```
-{
- 'boundary': (8, 1920),
- 'boundary_coords': (8, 1920, 4),
- 'boundary_weights': (8, 1920),
- 'phase_coords': (8, 128, 4),
- 'position_coords': (8, 1600, 2),
- 'psi_label': (8, 128),
- 'scattering_kernel': (8, 128, 24),
- 'self_scattering_kernel': (8, 24, 24),
- 'sigma': (8, 1600, 2),
- 'velocity_coords': (8, 24, 2),
- 'velocity_weights': (8, 24)
+```bash
+FEATURES = {
+    "phase_coords": (NUM_PHASE_COORDS, 2 * NUM_DIM),
+    "boundary_coords": (NUM_BOUNDARY_COORDS, 2 * NUM_DIM),
+    "boundary_weights": (NUM_BOUNDARY_COORDS),
+    "position_coords": (NUM_POSITION_COORDS, NUM_DIM),
+    "velocity_coords": (NUM_VELOCITY_COORDS, NUM_DIM),
+    "velocity_weights": (NUM_VELOCITY_COORDS),
+    "boundary": (NUM_BOUNDARY_COORDS),
+    "sigma": (NUM_POSITION_COORDS, 2),
+    "scattering_kernel": (NUM_PHASE_COORDS, NUM_VELOCITY_COORDS),
+    "self_scattering_kernel": (NUM_VELOCITY_COORDS, NUM_VELOCITY_COORDS),
 }
+```
+
+where
+
+```bash
+NUM_POSITION_COORDS = number of position coordinates
+NUM_VELOCITY_COORDS = number of velocity coordinates
+NUM_PHASE_COORDS = number of phase coordinates
+NUM_BOUNDARY_COORDS = number of boundary coordinates
 ```
