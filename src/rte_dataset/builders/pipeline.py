@@ -56,7 +56,7 @@ def make_data_features(np_data: Mapping[str, np.ndarray]) -> FeatureDict:
         axis=1,
     )
 
-    sigma = np.stack([sigma_t, sigma_a], axis=-1)
+    sigma = np.stack([sigma_t, sigma_t - sigma_a], axis=-1)
 
     features = {
         "sigma": sigma,
