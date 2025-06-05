@@ -16,6 +16,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
+    "huggingface-hub[cli,hf-xet]>=0.32.4",
     "numpy>=1.26.4",
     "scipy>=1.14.1",
 ]
