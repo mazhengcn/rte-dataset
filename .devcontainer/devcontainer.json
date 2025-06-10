@@ -10,7 +10,9 @@
                 "MathWorks.language-matlab",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                "charliermarsh.ruff"
+                "charliermarsh.ruff",
+                "astral-sh.ty",
+                "tamasfe.even-better-toml"
             ]
         }
     },
